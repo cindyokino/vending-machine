@@ -17,15 +17,24 @@ public class UserIOConsoleImpl implements UserIO{
         System.out.println(msg);
     }
 
+    /**
+     * A simple method that takes in a message to display on the console,
+     * and continually re-prompts the user with that message until they enter a double
+     * to be returned as the answer to that message.
+     *
+     * @param msgPrompt - String explaining what information you want from the user.
+     * @return the answer to the message as double
+     */
     @Override
-    public double readDouble(String prompt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double readDouble(String prompt, double min, double max) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public double readDouble(String msgPrompt) {
+        while (true) {
+            try {
+                return Double.parseDouble(this.readString(msgPrompt));
+            } catch (NumberFormatException e) {
+                this.print("Input error. Please try again.");
+            }
+        }
+    }   
 
     /**
      * A simple method that takes in a message to display on the console,
@@ -52,12 +61,7 @@ public class UserIOConsoleImpl implements UserIO{
             }
         }
         return num;
-    }
-
-    @Override
-    public int readInt(String prompt, int min, int max) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }    
 
     /**
      * A simple method that takes in a message to display on the console,
