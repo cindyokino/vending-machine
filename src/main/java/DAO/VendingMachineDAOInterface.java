@@ -5,6 +5,8 @@
  */
 package DAO;
 
+import DTO.Product;
+
 /**
  *
  * @author W
@@ -12,4 +14,6 @@ package DAO;
 public interface VendingMachineDAOInterface {
     void loadProducts() throws CannotOpenFile;
     // Loads the Order objects in a given file into memory    
+    Product unmarshallProducts(String productText);
+    // Unpack the Trade objects to be stored in a HashMap
 }
