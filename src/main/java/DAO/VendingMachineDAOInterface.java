@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ServiceLayer;
+package DAO;
 
 /**
  *
  * @author W
  */
-public interface VendingMachineServiceLevel {    
-    
-    
+public interface VendingMachineDAOInterface {
+    void loadProducts() throws CannotOpenFile;
+    // Loads the Order objects in a given file into memory    
 }
