@@ -1,6 +1,5 @@
 package ServiceLayer;
 
-public interface VendingMachineServiceLevel {
-    
-    
+public interface VendingMachineServiceLevel {       
+        
 }

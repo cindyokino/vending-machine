@@ -15,11 +15,14 @@ public class Product {
         this.productName = name;
         this.productPrice = price;
         this.productQuantity = quantity;
-
     }
     
     public int getProductID() {
         return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
     
     public String getProductName() {
@@ -42,7 +45,7 @@ public class Product {
         return productQuantity;
     }
     
-    public void setProductNPrice(int quantity) {
+    public void setProductQuantity(int quantity) {
         this.productQuantity = quantity;
     }
 }
