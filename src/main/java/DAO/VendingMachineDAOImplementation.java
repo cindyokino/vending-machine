@@ -9,28 +9,34 @@ import DTO.Product;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  *
  * @author W
  */
-public class VendingMachineDAOImplementation implements VendingMachineDAOInterface{
-    HashMap<Integer, Product> products = new HashMap<>();    
+public class VendingMachineDAOImplementation implements VendingMachineDAOInterface {
+
+    HashMap<Integer, Product> products = new HashMap<>();
     public final String PRODUCT_RECORD;
-    
-    public static final String DELIMITER = "::";   
+
+    public static final String DELIMITER = "::";
 
     public VendingMachineDAOImplementation() throws CannotOpenFile {
-        PRODUCT_RECORD = "product_file.txt";        
+        PRODUCT_RECORD = "product_file.txt";
         loadProducts();
     }
 
     public VendingMachineDAOImplementation(String product_file) {
-        PRODUCT_RECORD = product_file;        
+        PRODUCT_RECORD = product_file;
     }
-    
+
     @Override
     public void loadProducts() throws CannotOpenFile {
         Scanner reader;
@@ -55,21 +61,56 @@ public class VendingMachineDAOImplementation implements VendingMachineDAOInterfa
             // Method call returns an Product object
             products.put(currentProduct.getProductID(), currentProduct);
             // Add the current Ptoduct object to the Product HashMap
-            
+
         }
         reader.close();
         // Close the reader
     }
-    
+
     @Override
     public Product unmarshallProducts(String productText) {
         String[] productString = productText.split(DELIMITER);
-        Product newProduct = new Product();        
+        Product newProduct = new Product();
         newProduct.setProductID(Integer.parseInt(productString[0]));
         newProduct.setProductName(productString[1]);
         newProduct.setProductPrice(Double.parseDouble(productString[2]));
-        newProduct.setProductQuantity(Integer.parseInt(productString[3]));        
+        newProduct.setProductQuantity(Integer.parseInt(productString[3]));
         return newProduct;
     }
     
+    @Override
+    public void shutDown() throws CannotOpenFile {
+        saveProducts();
+    }
+    
+    @Override
+    public void saveProducts() throws CannotOpenFile {
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(new FileWriter(PRODUCT_RECORD));
+            // Open it for editing.
+        } catch (IOException e) {
+            throw new CannotOpenFile("Cannot write to trade record file.");
+        }
+        writer.println("ID::NAME::PRICE::QUANTITY");
+        for (Product thisProduct : products.values()) {
+            writer.println(marshallProduct(thisProduct));
+            // marshall it to that file
+        }
+        writer.close();
+    }
+    
+    @Override
+    public String marshallProduct(Product product) {
+        String tradeString = product.getProductID() + DELIMITER;
+        tradeString += product.getProductName() + DELIMITER;
+        tradeString += product.getProductPrice() + DELIMITER;
+        tradeString += product.getProductQuantity();        
+        return tradeString;
+    }
+    
+    @Override
+    public List<Product> getProducts() {
+        return new ArrayList<>(products.values());
+    }
 }
