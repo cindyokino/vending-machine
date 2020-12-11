@@ -21,7 +21,7 @@ public class VendingMachineServiceLevelImplementation implements VendingMachineS
     @Override
     public void listAllProducts() {
        dao.findAllProducts().forEach(product -> {
-           System.out.println(product.getProductID() + " - " + product.getProductName());
+           System.out.println(product.getProductID() + " - " + product.getProductName()+ " --- " + product.getProductPrice() + " --- " + product.getProductQuantity());
        });
     }
 

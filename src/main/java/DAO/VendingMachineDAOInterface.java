@@ -7,6 +7,7 @@ package DAO;
 
 import DTO.Product;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -21,9 +22,11 @@ public interface VendingMachineDAOInterface {
 //    
 //    Product createProduct(Product product);
 //    
-    List<Product> findAllProducts();
-    
-    
+    List<Product> findAllProducts();   
+    void saveProducts(Map<Integer, Product> productsDatabase) throws CannotOpenFile;
+    String marshallProduct(Product product);
+    Product unmarshallProducts(String productText);
+    void loadProducts() throws CannotOpenFile;
 //    void loadProducts() throws CannotOpenFile;
 //    // Loads the Order objects in a given file into memory    
 //    Product unmarshallProducts(String productText);

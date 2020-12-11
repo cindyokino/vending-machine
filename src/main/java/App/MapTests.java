@@ -61,7 +61,7 @@ public class MapTests {
                     userIo.print("Wrong option, please try again");
                 }
             } while (option != 3);
-            
+            vendingMachineDao.saveProducts(productsDatabase);
             userIo.print("good bye");            
     }
     
