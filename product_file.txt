@@ -1,1 +1,9 @@
 ID::NAME::PRICE::QUANTITY
+1::Tea::1.5::13
+2::Coffee::2.25::0
+3::Cola::2.5::0
+4::Sprite::5.5::15
+5::Orange::2.5::12
+6::Twix::2.5::20
+7::Mars::2.5::7
+8::Snickers::2.5::10
