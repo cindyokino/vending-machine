@@ -34,9 +34,9 @@ public class Change {
     }
     
     
-    public static void coinsToChange(double amountOfChange) {
+    public static Change coinsToChange(double amountOfChange) {
         Change change = new Change();
-        int totalCents = (int)amountOfChange * 100;
+        int totalCents = (int)(amountOfChange * 100);
         
         change.quarter = totalCents / 25;
         int remaining1 = totalCents % 25;
@@ -46,7 +46,10 @@ public class Change {
         
         change.nickel = remaining2 / 5;
         change.penny = remaining2 % 5;  
-                
+        
+        System.out.println("Here is your change:");        
         System.out.print(change.quarter + " quarters, " + change.dime + " dimes, " + change.nickel + " nickels, " + change.penny + " pennys");
+        
+        return change;
     }
 }

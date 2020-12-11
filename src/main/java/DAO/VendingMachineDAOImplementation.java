@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
 /**
  *
  * @author W
  */
+
 public class VendingMachineDAOImplementation implements VendingMachineDAOInterface {
 
     HashMap<Integer, Product> products = new HashMap<>();

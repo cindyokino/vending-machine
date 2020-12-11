@@ -9,3 +9,4 @@ public interface VendingMachineServiceLevel {
     void saveProducts() throws CannotOpenFile;
     void shutDown() throws CannotOpenFile;
 }
+

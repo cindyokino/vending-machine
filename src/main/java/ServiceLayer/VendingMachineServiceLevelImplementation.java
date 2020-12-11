@@ -1,5 +1,6 @@
 package ServiceLayer;
 
+
 import DAO.CannotOpenFile;
 import DAO.VendingMachineDAOInterface;
 import DTO.Product;
@@ -26,5 +27,6 @@ public class VendingMachineServiceLevelImplementation implements VendingMachineS
     public void shutDown() throws CannotOpenFile {
         saveProducts();
         dao.shutDown();
+
     }
 }

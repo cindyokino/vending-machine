@@ -1,10 +1,10 @@
 package DAO;
 
 public class CannotOpenFile extends Exception{
-    CannotOpenFile(String message) {
+    public CannotOpenFile(String message) {
         super(message);
     }
-    CannotOpenFile(String message, Exception e) {
+    public CannotOpenFile(String message, Exception e) {
         super(message, e);
     }
 }
