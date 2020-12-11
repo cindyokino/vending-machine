@@ -4,6 +4,6 @@ ID::NAME::PRICE::QUANTITY
 3::Cola::2.5::0
 4::Sprite::5.5::15
 5::Orange::2.5::12
-6::Twix::2.5::20
+6::Twix::2.5::19
 7::Mars::2.5::7
-8::Snickers::2.5::10
+8::Snickers::2.5::9

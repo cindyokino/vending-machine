@@ -42,6 +42,5 @@ public class VendingMachineServiceLevelImplementation implements VendingMachineS
         double calculatedChange = money - chosenProduct.getProductPrice();
 
         return Change.coinsToChange(calculatedChange);
-
     }
 }

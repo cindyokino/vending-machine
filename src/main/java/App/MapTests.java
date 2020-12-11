@@ -5,6 +5,8 @@
  */
 package App;
 
+import DAO.AuditImplementation;
+import DAO.AuditInterface;
 import DAO.CannotOpenFile;
 import DAO.VendingMachineDAOImplementation;
 import DAO.VendingMachineDAOInterface;
@@ -36,6 +38,7 @@ public class MapTests {
             VendingMachineServiceLevel machineService = new VendingMachineServiceLevelImplementation(vendingMachineDao);            
             UserIO userIo = new UserIOConsoleImpl();
             VendingMachineView view = new VendingMachineView(userIo);
+            AuditInterface logs = new AuditImplementation(vendingMachineDao);
 
            
             int option = 0;
@@ -48,7 +51,8 @@ public class MapTests {
                     machineService.listAllProducts();
                     int desiredProductId = userIo.readInt("Choose the number for the desired product");
                     try {
-                        machineService.purchase(desiredProductId, money);
+                        machineService.purchase(desiredProductId, money);                        
+                        logs.recordProduct(desiredProductId);
     //                int productOption = userIo.readInt("");
                     } catch (ProductNotFoundException ex) {
                         userIo.print("The product you entered was not found, please try again with different product");
