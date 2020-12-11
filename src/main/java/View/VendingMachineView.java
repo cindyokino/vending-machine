@@ -10,7 +10,8 @@ public class VendingMachineView {
     }
     Scanner scan = new Scanner(System.in);
     // MANAGE ORDERS
-    public int selectManageOrdersOptions(){
+    public int selectManageOrdersOptions(){        
+        io.print("");
         io.print("***Manage Orders Options***");
         io.print("1. List all Products");
         io.print("2. Purchase");      

@@ -1,2 +1,3 @@
 2020-12-11T13:34:36.516787900 Product sold :  6-Twix| Price: 2.5| New Quantity: 19| 
 2020-12-11T13:37:10.046911200 Product sold :  8-Snickers| Price: 2.5| New Quantity: 9| 
+2020-12-11T13:59:46.372945500 Product sold :  1-Tea| Price: 1.5| New Quantity: 12| 

@@ -42,14 +42,20 @@ public class MapTests {
 
            
             int option = 0;
+            userIo.print("");
+            userIo.print("========================================================================");
+            userIo.print("*** Welcome ***");
             do {
                 option = view.selectManageOrdersOptions();
                 if(option == 1){
                     machineService.listAllProducts();                
                 } else if(option == 2) {
+                    userIo.print("");
                     double money = userIo.readDouble("Please insert your money: ");
                     machineService.listAllProducts();
+                    userIo.print("");
                     int desiredProductId = userIo.readInt("Choose the number for the desired product");
+                    userIo.print("");
                     try {
                         machineService.purchase(desiredProductId, money);                        
                         logs.recordProduct(desiredProductId);
@@ -58,10 +64,9 @@ public class MapTests {
                         userIo.print("The product you entered was not found, please try again with different product");
                     } catch (NoItemInventoryException ex) {
                         System.out.println("The product you entered is out of stock, please choose another product");
-                    } catch (InsufficientFundsException ex) {
-                        System.out.println("Please try again with more funds");
                     } 
                 } else if (option != 3) {
+                    userIo.print("");
                     userIo.print("Wrong option, please try again");
                 }
             } while (option != 3);

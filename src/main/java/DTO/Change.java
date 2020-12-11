@@ -47,8 +47,10 @@ public class Change {
         change.nickel = remaining2 / 5;
         change.penny = remaining2 % 5;  
         
+        System.out.println("");
         System.out.println("Here is your change:");        
         System.out.print(change.quarter + " quarters, " + change.dime + " dimes, " + change.nickel + " nickels, " + change.penny + " pennys");
+        System.out.println("");
         
         return change;
     }
