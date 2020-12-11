@@ -6,14 +6,26 @@
 package DAO;
 
 import DTO.Product;
+import java.util.List;
 
 /**
  *
  * @author W
  */
 public interface VendingMachineDAOInterface {
-    void loadProducts() throws CannotOpenFile;
-    // Loads the Order objects in a given file into memory    
-    Product unmarshallProducts(String productText);
-    // Unpack the Trade objects to be stored in a HashMap
+    
+    
+    Product findProductById(int id);
+//    
+//    void deleteProductById(int id);
+//    
+//    Product createProduct(Product product);
+//    
+    List<Product> findAllProducts();
+    
+    
+//    void loadProducts() throws CannotOpenFile;
+//    // Loads the Order objects in a given file into memory    
+//    Product unmarshallProducts(String productText);
+//    // Unpack the Trade objects to be stored in a HashMap
 }
