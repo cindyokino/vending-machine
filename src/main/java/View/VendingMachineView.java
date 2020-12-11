@@ -35,7 +35,7 @@ public class VendingMachineView {
 
     public void displayAllProducts(List<Product> allProducts) {
         for (Product p : allProducts) {
-            String tradeInfo = String.format("%d : %s : %s : BORD%s : SORD%s  ",
+            String tradeInfo = String.format("%d : %s : %f : %d ",
                     p.getProductID(),
                     p.getProductName(),
                     p.getProductPrice(),
