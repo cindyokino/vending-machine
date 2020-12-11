@@ -9,7 +9,6 @@ import DAO.CannotOpenFile;
 import DAO.VendingMachineDAOImplementation;
 import DAO.VendingMachineDAOInterface;
 import DTO.Product;
-import ServiceLayer.InsufficientFundsException;
 import ServiceLayer.NoItemInventoryException;
 import ServiceLayer.ProductNotFoundException;
 import ServiceLayer.VendingMachineServiceLevel;
@@ -42,11 +41,13 @@ public class MapTests {
             do {
                 option = view.selectManageOrdersOptions();
                 if(option == 1){
-                    machineService.listAllProducts();                
+                    machineService.listAllProducts();  
+                    userIo.print("");
                 } else if(option == 2) {
                     double money = userIo.readDouble("Please insert your money: ");
                     machineService.listAllProducts();
                     int desiredProductId = userIo.readInt("Choose the number for the desired product");
+                    userIo.print("");
                     try {
                         machineService.purchase(desiredProductId, money);
     //                int productOption = userIo.readInt("");
@@ -54,17 +55,15 @@ public class MapTests {
                         userIo.print("The product you entered was not found, please try again with different product");
                     } catch (NoItemInventoryException ex) {
                         System.out.println("The product you entered is out of stock, please choose another product");
-                    } catch (InsufficientFundsException ex) {
-                        System.out.println("Please try again with more funds");
-                    } 
+                    }  
                 } else if (option != 3) {
                     userIo.print("Wrong option, please try again");
                 }
             } while (option != 3);
-            
+            userIo.print("");
             userIo.print("good bye");            
     }
-    
+                
     
      private static Map<Integer, Product> loadProducts() throws CannotOpenFile {
         Scanner reader;
