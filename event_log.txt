@@ -1,0 +1,2 @@
+2020-12-14T01:05:57.446929300 Product sold :  1-Tea| Price: 1.5| New Quantity: 14| 
+2020-12-14T01:08:05.840248300 Product sold :  1-Tea| Price: 1.5| New Quantity: 12| 

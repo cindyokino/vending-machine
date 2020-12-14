@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class Application {
 
-    public static void main(String[] args) throws CannotOpenFile, InvalidDelimiterException {        
+    public static void main(String[] args) throws CannotOpenFile, InvalidDelimiterException, InsufficientFundsException, NoItemInventoryException {        
         VendingMachineDAOInterface vendingMachineDao = new VendingMachineDAOImplementation();
         VendingMachineServiceLevel service = new VendingMachineServiceLevelImplementation(vendingMachineDao); 
         UserIO userIo = new UserIOConsoleImpl();

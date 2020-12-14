@@ -16,4 +16,5 @@ public interface VendingMachineDAOInterface {
     // Pack the Trade objects to be stored in a file
     List<Product> getProducts();
     // Return a list of trades
+    Product findProductById(int id);
 }

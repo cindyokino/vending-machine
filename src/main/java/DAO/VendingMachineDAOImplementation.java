@@ -24,12 +24,11 @@ import java.util.Scanner;
 public class VendingMachineDAOImplementation implements VendingMachineDAOInterface {
 
     HashMap<Integer, Product> products = new HashMap<>();
-    public final String PRODUCT_RECORD;
-
+    public final String PRODUCT_RECORD;    
     public static final String DELIMITER = "::";
 
     public VendingMachineDAOImplementation() throws CannotOpenFile {
-        PRODUCT_RECORD = "product_file.txt";
+        PRODUCT_RECORD = "product_file.txt";        
         loadProducts();
     }
 
@@ -112,5 +111,10 @@ public class VendingMachineDAOImplementation implements VendingMachineDAOInterfa
     @Override
     public List<Product> getProducts() {
         return new ArrayList<>(products.values());
+    }
+
+    @Override
+    public Product findProductById(int id) {
+        return products.get(id);         
     }
 }

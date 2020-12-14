@@ -3,8 +3,11 @@ package Controller;
 import DAO.CannotOpenFile;
 import DAO.VendingMachineDAOImplementation;
 import DAO.VendingMachineDAOInterface;
+import DTO.Change;
 import DTO.Product;
+import ServiceLayer.InsufficientFundsException;
 import ServiceLayer.InvalidDelimiterException;
+import ServiceLayer.NoItemInventoryException;
 import ServiceLayer.VendingMachineServiceLevel;
 import ServiceLayer.VendingMachineServiceLevelImplementation;
 import View.UserIO;
@@ -15,47 +18,35 @@ import java.util.List;
 public class VendingMachineModelController {
     private VendingMachineServiceLevel service;
     private VendingMachineView view;
-//    private UserIO io = new UserIOConsoleImpl();
-
-//    VendingMachineDAOInterface vendingMachineDao;
-//    VendingMachineServiceLevel service = new VendingMachineServiceLevelImplementation(vendingMachineDao);
-//    UserIO userIo = new UserIOConsoleImpl();
-//    VendingMachineView view = new VendingMachineView(userIo);
-//    UserIO io = new UserIOConsoleImpl();
+    UserIO io = new UserIOConsoleImpl();
+    double balance = 0;
 
     public VendingMachineModelController(VendingMachineServiceLevel service, VendingMachineView view) {
         this.service = service;
         this.view = view;
     }
 
-//    public VendingMachineModelController() {
-//    }   
-
-    public void run() throws CannotOpenFile, InvalidDelimiterException {
+    public void run() throws CannotOpenFile, InvalidDelimiterException, InsufficientFundsException, NoItemInventoryException {
         //vendingMachineDao = new VendingMachineDAOImplementation();
         boolean keepGoing = true;
         int menuSelection = 0;
+        balance += balanceUbdate();
         while (keepGoing) {
             switch (getMenuSelection()) {
                 case 1:
                     viewAllTrades();
                     break;
                 case 2:
-                    //manageOrders();
+                    purchase();
                     break;
                 case 3:
-                    //displayOrderBook();
-                    break;
-                case 4:
-                    //manageOrders();
-                    break;
-                case 5:
                     view.exitMessage();
+                    Change.coinsToChange(balance);
                     service.shutDown();
                     keepGoing = false;
                     break;
                 default:
-                    System.out.println("Unknown Command");
+                    io.print("Unknown Command");
                     break;
             }
         }
@@ -69,6 +60,25 @@ public class VendingMachineModelController {
         view.displayAllProductsBanner();
         List<Product> allProducts = service.getProducts();
         view.displayAllProducts(allProducts);
+    }
+    
+    private void purchase() throws InsufficientFundsException, NoItemInventoryException, CannotOpenFile{        
+        int productId = io.readInt("Enter a Product ID");
+        try{
+        balance = service.getPurchase(productId, balance);
+        
+        }catch (InsufficientFundsException ex){
+            io.print(ex.getMessage());
+            balance += balanceUbdate();
+        }catch (NoItemInventoryException ex){
+            io.print(ex.getMessage());
+            productId = io.readInt("Enter a Product ID");
+        }
+        io.print("Your balance = " + balance);
+    }
+
+    private double balanceUbdate() {        
+        return view.balanceUpdate("Please, put some money into machine:");
     }
 
 }

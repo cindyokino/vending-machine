@@ -2,8 +2,8 @@ package View;
 
 import java.util.Scanner;
 
-public class UserIOConsoleImpl implements UserIO{
-    
+public class UserIOConsoleImpl implements UserIO {
+
     final private Scanner console = new Scanner(System.in);
 
     /**
@@ -18,11 +18,12 @@ public class UserIOConsoleImpl implements UserIO{
     }
 
     /**
-     * A simple method that takes in a message to display on the console,
-     * and continually re-prompts the user with that message until they enter a double
-     * to be returned as the answer to that message.
+     * A simple method that takes in a message to display on the console, and
+     * continually re-prompts the user with that message until they enter a
+     * double to be returned as the answer to that message.
      *
-     * @param msgPrompt - String explaining what information you want from the user.
+     * @param msgPrompt - String explaining what information you want from the
+     * user.
      * @return the answer to the message as double
      */
     @Override
@@ -34,14 +35,24 @@ public class UserIOConsoleImpl implements UserIO{
                 this.print("Input error. Please try again.");
             }
         }
-    }   
+    }
+
+    @Override
+    public double readDoublePositive(String msgPrompt) {
+        double d = 0;
+        do {
+            d = readDouble(msgPrompt);
+        } while (d <= 0);
+        return d;
+    }
 
     /**
-     * A simple method that takes in a message to display on the console,
-     * and continually re-prompts the user with that message until they enter an integer
-     * to be returned as the answer to that message.
+     * A simple method that takes in a message to display on the console, and
+     * continually re-prompts the user with that message until they enter an
+     * integer to be returned as the answer to that message.
      *
-     * @param msgPrompt - String explaining what information you want from the user.
+     * @param msgPrompt - String explaining what information you want from the
+     * user.
      * @return the answer to the message as integer
      */
     @Override
@@ -61,17 +72,20 @@ public class UserIOConsoleImpl implements UserIO{
             }
         }
         return num;
-    }  
-    
+    }
+
     /**
-     * A slightly more complex method that takes in a message to display on the console,
-     * and continually reprompts the user with that message until they enter an integer
-     * within the specified min/max range to be returned as the answer to that message.
+     * A slightly more complex method that takes in a message to display on the
+     * console, and continually re-prompts the user with that message until they
+     * enter an integer within the specified min/max range to be returned as the
+     * answer to that message.
      *
-     * @param msgPrompt - String explaining what information you want from the user.
-     * @param min       - minimum acceptable value for return
-     * @param max       - maximum acceptable value for return
-     * @return an integer value as an answer to the message prompt within the min/max range
+     * @param msgPrompt - String explaining what information you want from the
+     * user.
+     * @param min - minimum acceptable value for return
+     * @param max - maximum acceptable value for return
+     * @return an integer value as an answer to the message prompt within the
+     * min/max range
      */
     @Override
     public int readInt(String msgPrompt, int min, int max) {
@@ -84,10 +98,11 @@ public class UserIOConsoleImpl implements UserIO{
     }
 
     /**
-     * A simple method that takes in a message to display on the console,
-     * and then waits for an answer from the user to return.
+     * A simple method that takes in a message to display on the console, and
+     * then waits for an answer from the user to return.
      *
-     * @param msgPrompt - String explaining what information you want from the user.
+     * @param msgPrompt - String explaining what information you want from the
+     * user.
      * @return the answer to the message as string
      */
     @Override
@@ -95,5 +110,5 @@ public class UserIOConsoleImpl implements UserIO{
         System.out.println(msgPrompt);
         return console.nextLine();
     }
-    
+
 }
